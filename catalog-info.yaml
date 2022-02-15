@@ -1,0 +1,20 @@
+# For more information about the available options please visit: http://go/backstage (VPN required)
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    github.com/project-slug: Unity-Technologies/Indoor-Pet-Detection
+  name: Indoor-Pet-Detection
+  description: "A demo project for indoor dog detection using Unity generated synthetic data."
+  labels:
+    costcenter: "5160"
+  tags:
+    - planned-public
+  links:
+    - url: https://unity.slack.com/messages/C02GMBMR2FR/
+      title: "#ai-cv-dog-detection-demo"
+      icon: chat
+spec:
+  type: other
+  lifecycle: production
+  owner: unity-technologies/computer-vision
