@@ -5,13 +5,12 @@ channels:
 dependencies:
   - pip==21.2.4
   - python=3.8
-  - pytorch==1.8
-  - torchvision=0.9.0
-  - flake8=3.8.3
-  - isort=5.6.4
-  - protobuf=3.17.2
-  - pytest=6.2.3
-  - pytest-cov=2.10.0
+  - pytorch==1.9
+  - torchvision=0.2.2
+  - protobuf>3.14
+  - pytest
+  - pytest-cov
   - pip:
     - git+https://github.com/facebookresearch/detectron2.git
-    - yacs==0.1.8
+    - yacs~=0.1
+    - click~=8.0.3
