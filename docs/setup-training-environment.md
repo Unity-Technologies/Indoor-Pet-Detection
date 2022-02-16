@@ -20,11 +20,11 @@ We trained with multiple strategies using real & synthetic data. The following e
 
 ### Real data
 
-We used real data for fine-tuning & testing the final models for performance. 
+We used real data for fine-tuning & testing the final models for performance.
 [COCO](https://cocodataset.org/#home) and [OIDSv6](https://storage.googleapis.com/openimages/web/index.html) was
 filtered with classes including `dog` and indoor artifacts like `microwave`, `couch` etc.
 
-This resulted in a total of 1538 images, and we split it - 
+This resulted in a total of 1538 images, and we split it -
 
 | Task        | No. of images (real) |
 |-------------|----------------------|
@@ -33,7 +33,7 @@ This resulted in a total of 1538 images, and we split it -
 | test        | 200                  |
 
 
-TODO: Update links to datasets (@souranil) 
+TODO: Update links to datasets (@souranil)
 
 Download the datasets from [here]()
 
@@ -76,4 +76,3 @@ project
 │                └───val2017
 │                      └───images
 ```
-

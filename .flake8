@@ -11,3 +11,4 @@ exclude =
     .git,
     __pycache__,
     Notebook,
+    docs,

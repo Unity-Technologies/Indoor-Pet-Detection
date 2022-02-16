@@ -11,8 +11,8 @@ yaml configs for these operations. There are a few samples in the `config/` fold
 Please follow `docs/setup-training-environment.md#directory-structure` and make sure
 the datasets are in the expected folders.
 
-When using synthetic data we use transfer learning and initialize the 
-network with [Imagenet-R-50.pkl](https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl) weights. 
+When using synthetic data we use transfer learning and initialize the
+network with [Imagenet-R-50.pkl](https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl) weights.
 We also try without using transfer learning for this step, by turning `config.train.transfer_learning.enabled` to `False`.
 
 ##### Step 1: Pre-training with synthetic data:
@@ -53,7 +53,7 @@ model:
 To start training:
 
 - `cd` into the project.
-- Run - 
+- Run -
 ```shell
 python -m src.run train -c config/detectron_dog_detection.yml --train_data=data --val_data=data --checkpoint-dir=ckpt
 ```
