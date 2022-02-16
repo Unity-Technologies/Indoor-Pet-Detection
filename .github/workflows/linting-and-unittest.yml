@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Linting
+        run: |
+          pip install pre-commit
+          pre-commit run --all-files
+  tests:
+    # reference from https://github.com/python-poetry/poetry/blob/master/.github/workflows/main.yml
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2.1.1
+        with:
+          activate-environment: "unity-cv-dog-detection-test"
+          python-version: ${{matrix.python-version}}
+      - run: |
+          conda env update -n unity-cv-dog-detection-test --file environment.yml
+          conda run -n unity-cv-dog-detection-test pytest tests/

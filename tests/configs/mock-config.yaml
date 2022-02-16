@@ -1,0 +1,40 @@
+estimator: Detectron
+backbone: resnet50
+num_classes: 1
+task: dog_detection
+train:
+  dataset:
+    name: Datamaker_indoor_dog
+    data_split: dev # synth, dev, train, val
+    synth: True
+    location: gs://doc-detection/dataset/synth/dogs_5000.zip #synthetic/aad646cc-343e-4e66-b907-4e443f94dbd8.zip  #
+  transfer_learning:
+    enabled: True
+    checkpoint: COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
+
+test:
+  dataset:
+    name: Real_images
+    data_split: val
+    synth: False
+    location: gs://doc-detection/dataset/real-coco-dog-indoor/dev.zip
+  checkpoint: output/model_final.pth  # COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml # Evaluation checkpoint
+  results: gs://doc-detection/results
+
+model:
+  batch_size: 12
+  workers: 1
+  gpu: 1
+  IMS_PER_BATCH: 4
+  base_lr: 0.00025
+  MAX_ITER: 11000
+  resume: True
+  REFERENCE_WORLD_SIZE: 1
+  FREEZE_AT: 0
+  BATCH_SIZE_PER_IMAGE: 128
+  NUM_CLASSES: 1
+  CHECKPOINT_PERIOD: 10000
+  STEPS: (210000, 250000)
+  EVAL_PERIOD: 100
+  TTA_ENABLED: False
+  config_yaml: faster_rcnn_R_50_FPN_3x.yaml

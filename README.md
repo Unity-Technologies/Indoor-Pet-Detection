@@ -1,6 +1,36 @@
-# Indoor-Pet-Detection
-Public slack channel: [#ai-cv-dog-detection-demo](https://unity.slack.com/messages/C02GMBMR2FR/) <br/>
-[View this project in Backstage](https://backstage.corp.unity3d.com/catalog/default/component/indoor-pet-detection) <br/>
-# Converting to public repository
-Any and all Unity software of any description (including components) (1) whose source is to be made available other than under a Unity source code license or (2) in respect of which a public announcement is to be made concerning its inner workings, may be licensed and released only upon the prior approval of Legal.
-The process for that is to access, complete, and submit this [FORM](https://docs.google.com/forms/d/e/1FAIpQLSe3H6PARLPIkWVjdB_zMvuIuIVtrqNiGlEt1yshkMCmCMirvA/viewform).
+# Indoor Pet Detection Example
+
+
+[![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE.md)
+![Unity](https://img.shields.io/badge/unity-2020.3.11f-brightgreen)
+
+This project provides scripts necessary to train a model for dog detection in an
+indoor home environment, with Unity generated Synthetic Data, and evaluate your model. For this example,
+we will use synthetic data to train our model and real data from COCO and OIDSv6 to
+fine tune and test our model.
+
+We also show how we can upload our own custom assets, and change randomizer parameters
+to change the data as required. Unity Computer Vision Datasets(UCVD) is the cloud platform
+used for generating large scale datasets.
+
+---
+
+We are currently building the product out and would love your feedback - [Survey](Link).
+
+---
+
+### Setup Instructions
+
+1. [Dataset Generation & Configuration](docs/dataset-generation-and-configuration.md)
+2. [Generate with UCVD](docs/ucvd.md)
+3. [Setup Environment](docs/setup-training-environment.md)
+4. [Training, Fine-tuning & Evaluation](docs/training-and-evaluation.md)
+5. [Results](docs/results.md)
+
+
+[//]: # (N.B. - We have used Detectron2 for this project, and to know more about it, please chckout - [Detectron2]&#40;https://github.com/facebookresearch/detectron2&#41;.)
+
+### Learning More About Unity Synthetic Data
+
+1. [Unity Computer Vision Datasets]()
+2. [Unity Perception](https://github.com/Unity-Technologies/com.unity.perception)
