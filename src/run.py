@@ -1,9 +1,9 @@
 import logging
-from src.commands import Entrypoint
 
 import click
 
 import src.constants as const
+from src.commands import Entrypoint
 
 logging.basicConfig(
     level=logging.INFO,

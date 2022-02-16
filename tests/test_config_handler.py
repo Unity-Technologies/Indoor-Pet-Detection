@@ -1,8 +1,9 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
-from src.config_handler import load_config, override_config, prepare_config
 from yacs.config import CfgNode
+
+from src.config_handler import load_config, override_config, prepare_config
 
 
 @pytest.fixture
