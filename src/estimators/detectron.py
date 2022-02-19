@@ -250,7 +250,7 @@ class DetectronEstimator:
 
 
 def get_dataset_metadata(data_path, is_synth=False):
-    annotation_match = glob.glob(f"{data_path}/*_coco/*.json")
+    annotation_match = glob.glob(f"{data_path}/annotations_*/*.json")
     if len(annotation_match) == 0 or len(annotation_match) > 1:
         raise Exception(f"Valid annotation not found at {data_path}")
     annotation_path = annotation_match[0]
