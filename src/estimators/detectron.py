@@ -249,15 +249,12 @@ class DetectronEstimator:
                 periodic_checkpointer.step(iteration)
 
 
-def get_dataset_metadata(data_path, is_synth=False):
-    annotation_match = glob.glob(f"{data_path}/annotations_*/*.json")
+def get_dataset_metadata(data_path):
+    annotation_match = glob.glob(f"{data_path}/annotations*/*.json")
     if len(annotation_match) == 0 or len(annotation_match) > 1:
         raise Exception(f"Valid annotation not found at {data_path}")
     annotation_path = annotation_match[0]
-    if is_synth:
-        images_path = data_path
-    else:
-        images_path = f"{data_path}/images"
+    images_path = f"{data_path}/images"
 
     return (
         annotation_path,
