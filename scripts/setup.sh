@@ -19,4 +19,3 @@ unzip -o data/real/test.zip -d data/real
 ## synthetic images for training [5k]
 gsutil -m cp gs://dog_detection_data/formatted-datasets/coco-synth-indoor-dog/train-5k/train2017.zip data/synth
 unzip -o data/synth/train2017.zip -d data/synth
-
