@@ -4,21 +4,17 @@ num_classes: 1
 task: dog_detection
 train:
   dataset:
-    name: Datamaker_indoor_dog
-    data_split: train
-    synth: False
-    location: gs://doc-detection/dataset/real-coco-dog-indoor/train.zip
+    name: synth_0_1
+    synth: True
   transfer_learning:
     enabled: True
-    checkpoint: gs://doc-detection/checkpoints/20211026-192512/model_final.pth #detectron2://ImageNetPretrained/MSRA/R-50.pkl #Transfer learning checkpoint
+    checkpoint: detectron2://ImageNetPretrained/MSRA/R-50.pkl #Transfer learning checkpoint
 
 test:
   dataset:
-    name: Real_images
-    data_split: val
-    synth: True
-    location: gs://doc-detection/dataset/synthetic/aad646cc-343e-4e66-b907-4e443f94dbd8.zip
-  checkpoint: data/ckpt/20220126-121925/model_final.pth  # COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml # Evaluation checkpoint
+    name: real_images
+    synth: False
+  checkpoint: ckpt/20220126-121925/model_final.pth  # COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml # Evaluation checkpoint
   results: gs://doc-detection/results
 
 model:
@@ -26,7 +22,7 @@ model:
   gpu: 8
   IMS_PER_BATCH: 16
   base_lr: 0.0025
-  MAX_ITER: 25000
+  MAX_ITER: 270000
   resume: False
   REFERENCE_WORLD_SIZE: 8
   FREEZE_AT: 0

@@ -60,19 +60,17 @@ Make sure you download the datasets to the following folder structure:
 project
 └───data
 │   └───synth
-│   │     └───coco
+│   │     └───train-10k
 │   │         └───annotations
-│   │         │      instances_train2017.json <-- (synthetic train)
+│   │         │      coco_object_detection_annotations.json <-- (synthetic train)
 │   │         └───images
-│   │             └───train2017
-│   │                 └───images
 │   └───real
-│         └───<split>
-│         │   coco_train2017.json <-- (Fine-tuning)
-│         │   coco_val2017.json <-- (validate)
-│         └───images
-│                └───train2017
-│                      └───images
-│                └───val2017
-│                      └───images
+│         └───train2017
+│         │   └───annotation
+│         |   │     coco.json
+│         |   └───images
+│         └───val2017
+│             └───annotation
+│             │     coco.json
+│             └───images
 ```

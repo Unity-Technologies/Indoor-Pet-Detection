@@ -1,5 +1,5 @@
 # Copyright (c) Unity Technologies USA Inc.
-
+import glob
 import logging
 import os
 from collections import OrderedDict
@@ -58,7 +58,8 @@ class DetectronEstimator:
             cfg.DATASETS.TEST = ("synth_coco_val",)
             is_synth = self.config.test.dataset.synth
             annotation_path, images_path = get_dataset_metadata(
-                self.config, self.test_data, op="val", is_synth=is_synth
+                self.test_data,
+                is_synth=is_synth
             )
             register_coco_instances("synth_coco_val", {}, annotation_path, images_path)
 
@@ -66,7 +67,8 @@ class DetectronEstimator:
             cfg.DATASETS.TRAIN = ("synth_coco_train",)
             is_synth = self.config.train.dataset.synth
             annotation_path, images_path = get_dataset_metadata(
-                self.config, self.train_data, op="train", is_synth=is_synth
+                self.train_data,
+                is_synth=is_synth
             )
             register_coco_instances(
                 "synth_coco_train", {}, annotation_path, images_path
@@ -78,7 +80,7 @@ class DetectronEstimator:
         model = build_model(cfg)
         if args.eval_only:
             DetectionCheckpointer(model, save_dir=cfg.OUTPUT_DIR).resume_or_load(
-                cfg.MODEL.WEIGHTS, resume=args.resume
+                self.config.test.checkpoint, resume=args.resume
             )
             return self.do_eval(cfg, model)
         distributed = comm.get_world_size() > 1
@@ -249,27 +251,21 @@ class DetectronEstimator:
                 periodic_checkpointer.step(iteration)
 
 
-def get_dataset_metadata(config, data_path, op, is_synth=False):
-    """
-    TODO: Integrate SDK to fetch data from UCVD
-    """
-    split = config.train.dataset.data_split
-    if op == "val":
-        split = config.test.dataset.data_split
+def get_dataset_metadata(data_path, is_synth=False):
+    annotation_match = glob.glob(f"{data_path}/annotations*/*.json")
+    if len(annotation_match) == 0 or len(annotation_match) > 1:
+        raise Exception(f"Valid annotation not found at {data_path}")
+    annotation_path = annotation_match[0]
+
     if is_synth:
-        # synth_dataset = SynthCOCO(
-        #     root=f"{data_path}/synth/coco/images/{op}2017",
-        #     annotation=f"{data_path}/synth/coco/annotations/instances_{op}2017.json"
-        # )
-        # return synth_dataset.annotation, synth_dataset.root
-        return (
-            f"{data_path}/synth/coco/annotations/instances_{op}2017.json",
-            f"{data_path}/synth/coco/images/{op}2017",
-        )
+        images_path = data_path
     else:
-        annotation_path = f"{data_path}/real/{split}/{split}_dog_coco.json"
-        images_path = f"{data_path}/real/{split}/images/{op}2017/images"
-        return annotation_path, images_path
+        images_path = f"{data_path}/images"
+
+    return (
+        annotation_path,
+        images_path
+    )
 
 
 def args_fine_tune(config):
@@ -298,6 +294,8 @@ def args_fine_tune(config):
         config.model.BATCH_SIZE_PER_IMAGE,
         "MODEL.ROI_HEADS.NUM_CLASSES",
         config.model.NUM_CLASSES,
+        "OUTPUT_DIR",
+        f"output/{TIMESTAMP_SUFFIX}"
     ]
 
 
