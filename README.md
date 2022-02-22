@@ -2,7 +2,7 @@
 
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE.md)
-![Unity](https://img.shields.io/badge/unity-2020.3.11f-brightgreen)
+![Unity](https://img.shields.io/badge/unity-2020.3.21f-brightgreen)
 
 This project provides scripts necessary to train a model for dog detection in an
 indoor home environment, with Unity generated Synthetic Data, and evaluate your model. For this example,
