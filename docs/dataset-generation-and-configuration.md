@@ -2,9 +2,7 @@
 
 #### Unity Dashboard
 
-Open your browser and go to [Unity Dashboard](https://dashboard.unity3d.com/). If this is your first time using the Dashboard, it will ask you to log in. If you haven't had a Unity account, follow the instructions in [the UCVD doc](ucvd.md) to create an account and sign in to Unity Dashboard.
-
-In the Unity Dashboard, click the **"DevOps"** on the left column of the webpage, and then choose **CV-Datasets -> Create Dataset**.
+Open your browser and go to [Unity Dashboard](https://dashboard.unity3d.com/). Follow [the instruction](ucvd.md) to navigate to the UCVD dashboard.
 
 #### Template
 
