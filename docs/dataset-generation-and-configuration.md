@@ -1,4 +1,4 @@
-# Dataset Generation
+## Dataset Generation
 
 **Table of Contents**
 
@@ -13,15 +13,17 @@
 
 ---
 
-## Requirements
+### Requirements
 
 Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity project associated with a Unity ID and organization. If you haven't had a Unity project, please follow [the instructions](ucvd.md) to create a Unity account and set up a Unity project via the [Unity Dashboard](https://dashboard.unity3d.com/).
 
 ---
 
-## Generate Synthetic Data
+### Generate Synthetic Data
 
-### Select a Template
+#### Select a Template
+
+> Note: Template is a Unity project pre-built to help bootstrap your dataset generation work. It provides the environments where the assets and objects are placed, such as home and retail shelves. In addition, the template contains structure and logic for the placement of assets and randomization of object and scene variables.
 
 1. Navigate to the [UCVD Dashboard](https://dashboard.unity3d.com/computer-vision-datasets) in your browser, and the webpage shows as the image below.
 
@@ -29,17 +31,23 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 	> Note: There are three templates that are publicly offered, and each template provides the environment in the generated images. In this example, we are going to choose the Home Interior template as our environment of data.
 
-1. Click the **Version: Latest** button and confirm that you are using version **2.0.9**.
-
-	> Note: All the UCVD templates are versioned.
+	![](images/navigate-to-templates.png)
 
 	> Note: Users could generate as many as 10,000 free images for each [Unity organization](https://id.unity.com/organizations). The available frames are displayed in the **Frame available** section above the templates. If you need to generate more data, please contact <datamaker-support@unity3d.com>.
 
+	> ![](images/available-frames.png)
+
+1. Click the **Version: Latest** button and confirm that you are using version **3.0.0**.
+
+	> Note: All the UCVD templates are versioned. Version 3.0.0 of the Home Interior template is capable to randomize the assets by their embedded animations.
+
+	<img src = "images/template-version-1.png" width ="400" /> <img src = "images/template-version-2.png"  width ="400"/>
+
 1. Click **Create** button of the Home Interior template
 
-	![](images/select-template.png)
+#### Select Assets
 
-### Select Assets
+> Note: Assets are 3D models of the objects of interest that you want rendered as part of the dataset. These would be the objects that your computer vision models would be trained to detect. At this time, UCVD only support FBX files with embedded textures and animations.
 
 > Note: The Home Interior template provides empty homes with furniture, but there are no people or pets in it, so we need to add pets into the selected environment. In this example, we are going to only place dogs into the houses. If you need to place your own pets, such as cats or other small mammals, the UCVD accepts custom FBX assets and you could upload them.
 
@@ -63,7 +71,7 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 	![](images/role-assigned-assets.png)
 
-### Object Labeling
+#### Object Labeling
 
 1. Click the dropdown box. In the three labeling modes, choose **"Custom Configuration"**.
 
@@ -85,34 +93,36 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 1. Click the **Next** button, and then click **Save & Next** button in the popup window to continue.
 
-### Randomizers
+#### Randomizers
 
-> Note: The Home Interior template provides five randomizers to randomize different factors in the data. You could unfold each randomizer and view the descriptions. In this example, we will only update the parameters in the **Foreground Object Placer** and keep all the other randomizers with default configurations. In data generation, the foreground object placer will find all assets with the "foreground" role and randomly place them in the home.
+> Note: A set of randomizers are used to introduce variety into the generated dataset. The Home Interior template provides five randomizers to randomize different factors in the data. You could unfold each randomizer and view the descriptions. In this example, we will only update the parameters in the **Foreground Object Placer** and keep all the other randomizers with default configurations. In the process of data generation, the foreground object placer will find all assets with the "foreground" role and randomly place them in the home.
 
 ![](images/foreground-randomizer.gif)
 
 1. Expand the **Foreground Object Placer > Scalar**, and configure the randomizer using the following values.
 
-	| Parameter | Value |
-	| --------- | ----- |
-	| Use Physics to Place Objects | false |
-	| Freeze Rotation around X-Axis | true |
-	| Freeze Rotation around Y-Axis | false |
-	| Freeze Rotation around Z-Axis | true |
-	| Randomize Rotation | true |
-	| Minimum Distance of Placed Objects to the Camera | 0.1 |
-	| Normalize Object Sizes | false |
-	| Confinement of Placing Objects in the Camera View | 1.0 |
-	| Normalized Object Size | 0.5 |
-	| Uniform Sampling | Min: 1, Max: 10 |
+	| Parameter | Value | Description |
+	| --------- | ----- | ----------- |
+	| Use Physics to Place Objects | false | Disable physics engine and use ray-based method to place objects (dogs) |
+	| Freeze Rotation around X-Axis | true | Disable dog rotation around X-Axis (Pitch) |
+	| Freeze Rotation around Y-Axis | false | Enable dog rotation around Y-Axis (Yaw) |
+	| Freeze Rotation around Z-Axis | true | Disable dog rotation around Z-Axis (Roll) |
+	| Randomize Rotation | true | Enable to randomize the rotation of objects (objects) |
+	| Minimum Distance of Placed Objects to the Camera | 0.1 | Minimum distance between the placed objects to the camera |
+	| Normalize Object Sizes | false | Disable the normalization of object sizes |
+	| Confinement of Placing Objects in the Camera View | 1.0 | Allows to place objects anywhere in the image. Objects will be placed closer to the center of the image if the value is less than 1.0 |
+	| Normalized Object Size | 0.5 | This value does not matter since it is disabled |
+	| Uniform Sampling | Min: 1, Max: 10 | Randomize the number of objects (dogs) in the field of view |
 
 1. Make sure the **Object Animation Randomizer** is enabled
+
+	> Note: The dog assets contain animations of dog poses, such as walking and sitting. The object animation randomizer here is to introduce a variety of dog poses in the generated datasets.
 
 	![](images/object-animation-randomizer.png)
 
 1. Click the **Next** button.
 
-### Data Generation Settings
+#### Data Generation Settings
 
 1. Expand the **Settings** box, and set the parameters using the following values
 
@@ -128,6 +138,8 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 	![](images/confirm-data-generation.png)
 
+> Note: The data generation will be triggered after this step. The whole process may take 30 minutes to complete. You can check the status of the generation in **DevOps > CV Datasets > Datasets**.
+
 ---
 
-## Proceed to [Setup Training Environment](setup-training-environment.md)
+### Proceed to [Setup Training Environment](setup-training-environment.md)
