@@ -75,21 +75,23 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 1. Click the dropdown box. In the three labeling modes, choose **"Custom Configuration"**.
 
-	> Note: This step is to set up object labeling so that the generated dataset contains labels for each object, like furniture and dog. The Home Interior template contains a set of default labels for the furniture, such as _Table\_Dining_ and _Bookcase_, but it does not have the label for the dog assets, so we need to customize the labels.
+	> Note: This step is to set up object labeling so that the generated dataset contains labels for each object, like furniture and dog. The Home Interior template contains a set of default labels for the furniture, such as _Table\_Dining_ and _Bookcase_, but it does not contain the label for dog assets.
 
 	![](images/select-labeling-mode.png)
 
-1. In the popup window, click "Include defaults".
+1. In the popup window, click "No".
 
-	> Note: This will add all the default furniture labels to all the labelers.
+	> Note: This will not add any default furniture label to the labelers. We are going to set up the label for dogs only.
 
-	![](images/include-default-labels.png)
+	![](images/default-labels.png)
 
 1. In the webpage as the following image, choose **BoundingBox2DLabeler**, mark the checkbox of the **dog** label, and click the **Apply** button. You will see the **dog** label moved to the right column.
 
-1. Repeat the above step on all the other labelers: _InstanceSegmentationLabeler_, _SemanticSegmentationLabeler_, _BoundingBox3DLabeler_, and _ObjectCountLabeler_.
+	![](images/add-dog-label-1.png)
 
-	![](images/add-dog-label.png)
+1. **Repeat** the above step on all the other labelers: _InstanceSegmentationLabeler_, _SemanticSegmentationLabeler_, _BoundingBox3DLabeler_, and _ObjectCountLabeler_.
+
+	![](images/add-dog-label-2.png)
 
 1. Click the **Next** button, and then click **Save & Next** button in the popup window to continue.
 
