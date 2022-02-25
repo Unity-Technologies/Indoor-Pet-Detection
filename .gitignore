@@ -142,6 +142,7 @@ Thumbs.db
 __MACOSX/
 detectron2
 data/
+output/
 
 /examples/data/
 **/.DS_Store

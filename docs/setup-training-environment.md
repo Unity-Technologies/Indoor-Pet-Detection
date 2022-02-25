@@ -7,7 +7,7 @@
 #### Setup Conda
 
 
-1. `conda create --file environment.yml -n unity-cv-dog-detection python=3.8`
+1. `conda env create --file environment.yml -n unity-cv-dog-detection python=3.8`
 2. `conda activate unity-cv-dog-detection`
 3. `conda env update -n unity-cv-dog-detection --file environment.yml`
 
@@ -66,11 +66,11 @@ project
 │   │         └───images
 │   └───real
 │         └───train2017
-│         │   └───annotation
+│         │   └───annotations
 │         |   │     coco.json
 │         |   └───images
 │         └───val2017
-│             └───annotation
+│             └───annotations
 │             │     coco.json
 │             └───images
 ```

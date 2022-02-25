@@ -6,7 +6,7 @@ dependencies:
   - pip==21.2.4
   - python=3.8
   - pytorch==1.9
-  - torchvision=0.2.2
+  - torchvision=0.10.0
   - protobuf>3.14
   - pytest
   - pytest-cov

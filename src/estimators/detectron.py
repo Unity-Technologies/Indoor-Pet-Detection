@@ -257,10 +257,7 @@ def get_dataset_metadata(data_path, is_synth=False):
         raise Exception(f"Valid annotation not found at {data_path}")
     annotation_path = annotation_match[0]
 
-    if is_synth:
-        images_path = data_path
-    else:
-        images_path = f"{data_path}/images"
+    images_path = f"{data_path}/images"
 
     return (
         annotation_path,
