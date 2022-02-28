@@ -19,11 +19,11 @@ We are currently building the product out and would love your feedback - [Survey
 
 ---
 
-### Setup Instructions
+### Instructions
 
-1. [Dataset Generation & Configuration](docs/dataset-generation-and-configuration.md)
-2. [Generate with UCVD](docs/ucvd.md)
-3. [Setup Environment](docs/setup-training-environment.md)
+1. [Setup Unity Account](docs/setup-unity-account.md)
+2. [Dataset Generation & Configuration](docs/dataset-generation-and-configuration.md)
+3. [Setup Training Environment](docs/setup-training-environment.md)
 4. [Training, Fine-tuning & Evaluation](docs/training-and-evaluation.md)
 5. [Results](docs/results.md)
 

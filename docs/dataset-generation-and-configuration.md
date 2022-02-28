@@ -15,7 +15,7 @@
 
 ### Requirements
 
-Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity project associated with a Unity ID and organization. If you haven't had a Unity project, please follow [the instructions](ucvd.md) to create a Unity account and set up a Unity project via the [Unity Dashboard](https://dashboard.unity3d.com/).
+Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity project associated with a Unity ID and organization. If you haven't had a Unity project, please follow [the instructions](setup-unity-account.md) to create a Unity account and set up a Unity project via the [Unity Dashboard](https://dashboard.unity3d.com/).
 
 ---
 

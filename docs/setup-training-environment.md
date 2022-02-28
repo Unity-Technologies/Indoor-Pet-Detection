@@ -1,4 +1,4 @@
-### Setup Environment
+## Setup Training Environment
 
 ### Pre requisites
 * conda (Please follow [Link](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) for installing conda)
@@ -6,11 +6,9 @@
 
 #### Setup Conda
 
-
 1. `conda create --file environment.yml -n unity-cv-dog-detection python=3.8`
 2. `conda activate unity-cv-dog-detection`
 3. `conda env update -n unity-cv-dog-detection --file environment.yml`
-
 
 N.B. - We use 8 Nvidia V100 GPUs for our experiments.
 
@@ -74,3 +72,7 @@ project
 │             │     coco.json
 │             └───images
 ```
+
+---
+
+### Proceed to [Training, Fine-tuning & Evaluation](training-and-evaluation.md)
