@@ -139,4 +139,4 @@ For running the training please follow the instructions below:
 
 ---
 
-#### Proceed to [Results](Results.md)
+#### Proceed to [Results](results.md)

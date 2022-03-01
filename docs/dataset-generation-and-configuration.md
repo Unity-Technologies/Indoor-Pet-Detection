@@ -1,27 +1,12 @@
-## Dataset Generation
+## Create a synthetic dataset for dog detection with UCVD
 
-**Table of Contents**
+These workflow steps describes the process of using the Home Interior template and 3D dog modles to create a synthetic dataset of indoor dogs.
 
-  - [Requirements](#requirements)
-  - [Generate Synthetic Data](#generate-synthetic-data)
-    - [Select a Template](#select-a-template)
-    - [Select Assets](#select-assets)
-    - [Object Labeling](#object-labeling)
-    - [Randomizers](#randomizers)
-    - [Data Generation Settings](#data-generation-settings)
-  - [Proceed to Setup Training Environment](#proceed-to-training)
+<p align="center">
+<img src="images/ucvd-workflow.png" width="600"/>
+</p>
 
----
-
-### Requirements
-
-Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity project associated with a Unity ID and organization. If you haven't had a Unity project, please follow [the instructions](setup-unity-account.md) to create a Unity account and set up a Unity project via the [Unity Dashboard](https://dashboard.unity3d.com/).
-
----
-
-### Generate Synthetic Data
-
-#### Select a Template
+### Select a Template
 
 > Note: Template is a Unity project pre-built to help bootstrap your dataset generation work. It provides the environments where the assets and objects are placed, such as home and retail shelves. In addition, the template contains structure and logic for the placement of assets and randomization of object and scene variables.
 
@@ -45,7 +30,7 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 1. Click **Create** button of the Home Interior template
 
-#### Select Assets
+### Select Assets
 
 > Note: Assets are 3D models of the objects of interest that you want rendered as part of the dataset. These would be the objects that your computer vision models would be trained to detect. At this time, UCVD only support FBX files with embedded textures and animations.
 
@@ -71,7 +56,7 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 	![](images/role-assigned-assets.png)
 
-#### Object Labeling
+### Object Labeling
 
 1. Click the dropdown box. In the three labeling modes, choose **"Custom Configuration"**.
 
@@ -95,7 +80,7 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 1. Click the **Next** button, and then click **Save & Next** button in the popup window to continue.
 
-#### Randomizers
+### Randomizers
 
 > Note: A set of randomizers are used to introduce variety into the generated dataset. The Home Interior template provides five randomizers to randomize different factors in the data. You could unfold each randomizer and view the descriptions. In this example, we will only update the parameters in the **Foreground Object Placer** and keep all the other randomizers with default configurations. In the process of data generation, the foreground object placer will find all assets with the "foreground" role and randomly place them in the home.
 
@@ -103,18 +88,18 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 1. Expand the **Foreground Object Placer > Scalar**, and configure the randomizer using the following values.
 
-	| Parameter | Value | Description |
-	| --------- | ----- | ----------- |
-	| Use Physics to Place Objects | false | Disable physics engine and use ray-based method to place objects (dogs) |
-	| Freeze Rotation around X-Axis | true | Disable dog rotation around X-Axis (Pitch) |
-	| Freeze Rotation around Y-Axis | false | Enable dog rotation around Y-Axis (Yaw) |
-	| Freeze Rotation around Z-Axis | true | Disable dog rotation around Z-Axis (Roll) |
-	| Randomize Rotation | true | Enable to randomize the rotation of objects (objects) |
-	| Minimum Distance of Placed Objects to the Camera | 0.1 | Minimum distance between the placed objects to the camera |
-	| Normalize Object Sizes | false | Disable the normalization of object sizes |
-	| Confinement of Placing Objects in the Camera View | 1.0 | Allows to place objects anywhere in the image. Objects will be placed closer to the center of the image if the value is less than 1.0 |
-	| Normalized Object Size | 0.5 | This value does not matter since it is disabled |
-	| Uniform Sampling | Min: 1, Max: 10 | Randomize the number of objects (dogs) in the field of view |
+	| Parameter | Value |
+	| --------- | ----- |
+	| Use Physics to Place Objects | false |
+	| Freeze Rotation around X-Axis | true |
+	| Freeze Rotation around Y-Axis | false |
+	| Freeze Rotation around Z-Axis | true |
+	| Randomize Rotation | true |
+	| Minimum Distance of Placed Objects to the Camera | 0.1 |
+	| Normalize Object Sizes | false |
+	| Confinement of Placing Objects in the Camera View | 1.0 |
+	| Normalized Object Size | 0.5 |
+	| Uniform Sampling | Min: 1, Max: 10 |
 
 1. Make sure the **Object Animation Randomizer** is enabled
 
@@ -124,7 +109,7 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 1. Click the **Next** button.
 
-#### Data Generation Settings
+### Data Generation Settings
 
 1. Expand the **Settings** box, and set the parameters using the following values
 
@@ -140,8 +125,53 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 	![](images/confirm-data-generation.png)
 
-> Note: The data generation will be triggered after this step. The whole process may take 30 minutes to complete. You can check the status of the generation in **DevOps > CV Datasets > Datasets**.
+> Note: The data generation will be triggered after this step. You can check the status of the generation in **DevOps > CV Datasets > Datasets**. The whole process may take about one hour to complete.
+
+> ![](images/queued-ucvd-run.png)
+
+### Preview Dataset
+
+1. Once data generation is completed, go to **DevOps > CV Datasets > Datasets** and click the **Preview** icon on the left of the run.
+
+	![](images/preview-icon.png)
+
+	> Note: You can also open the preview page by clicking the vertical ellipsis ("⋮") on the right of the run and selecting the **Preview dataset**
+
+	> ![](images/preview-button-1.png)
+	> ![](images/preview-button-2.png)
+
+1. In the **Preview Dataset** page, left-click any image to switch it to the **Zoom View** as shown in the right image below
+
+	> Note: the **Bounding Boxes** is the default annotation type in the zoom view, where all dogs will be annotated with a bounding box in the zoomed image
+
+	<img src = "images/preview-1.png" width ="400" /> <img src = "images/preview-2.png"  width ="400"/>
+
+1. Select the **Semantic Segmentation** or **Instance Segmentation** to switch the annotation type in the image.
+
+	> Note: We only added the **"dog"** label in the [object labeling step](#object-labeling), so dogs will be annotated in the **Semantic Segmentation** view but the furniture will not be.
+
+	<img src = "images/preview-3.png" width ="400" /> <img src = "images/preview-4.png"  width ="400"/>
+
+### Download Dataset
+
+1. Go to **DevOps > CV Datasets > Datasets** and click the vertical ellipsis ("⋮") on the right of the run. Select **Download dataset**.
+
+	![](images/download-dataset.png)
+
+1. Run `tar -xf <your-tarball-file>` to extract the content to the local disk
+
+	> Note: the extracted content contains two folders: _annotations_ and _images_. The tree structure is shown below
+
+```
+dataset
+└─── annotations
+|		 └─── coco.json
+└─── images
+	 └─── 1_rgb_6.png
+	 └─── 1_rgb_10.png
+	 		...
+```
 
 ---
 
-### Proceed to [Setup Training Environment](setup-training-environment.md)
+### Proceed to [Training and Evaluation](training-and-evaluation.md)
