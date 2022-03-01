@@ -11,9 +11,9 @@
 
 ### Setup Unity Account
 
-Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity project associated with a Unity ID and organization. If you have already had a Unity organization and a project, you can proceed to the [data generation](dataset-generation-and-configuration.md).
+Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity Service Project associated with a Unity Serivce Account. You can skip this step if you have already had a Unity Service Project.
 
-#### Create a Unity ID
+#### Create a Unity Account
 
 > Note: You can skip this step if you have already had a Unity account.
 
@@ -23,17 +23,13 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 	> Note: Pleasse make sure to read and accept Unity's Terms of Use and Privacy Policy before proceeding. More details of instructions can be found on the [Unity support website](https://support.unity.com/hc/en-us/articles/208626336-How-do-I-create-a-Unity-ID-account-)
 
-#### Sign into your Unity ID
-
-1. Go to [Unity ID](https://id.unity.com)
-
-1. Sign into your Unity ID
-
 #### Create a New Organization
 
 > Note: you can skip this step if you want to use an existing organization to generate the datasets on UCVD.
 
 > Note: More detailed instructions can be found on the [Unity support website](https://support.unity.com/hc/en-us/articles/208592876-How-do-I-create-a-new-Organization-)
+
+1. Sign in to your Unity Account at [id.unity.com](https://id.unity.com)
 
 1. Click the **Organizations** on the left column of the webpage
 
@@ -45,7 +41,9 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 
 > Note: you can skip this step if you are using an existing project to generate the datasets on UCVD
 
-1. Click the **Unity Dashboard** in the left of the column in your [Unity ID webpage](https://id.unity.com)
+1. Sign in to your Unity Account at [id.unity.com](https://id.unity.com)
+
+1. Click the **Unity Dashboard** in the left of the column
 
 	![](images/navigate-to-dashboard.png)
 
@@ -58,6 +56,8 @@ Unity Computer Vision Datasets (UCVD) service provides data generation at scale 
 ---
 
 ### Setup Training Environment
+
+This step is to set up the Python environment and datasets for the model training. With this environment, we will train the Fast R-CNN model using the synthetically generated data from UCVD and reproduce the [results](results.md) shown in the sample.
 
 #### Installation
 
@@ -98,9 +98,7 @@ Download the datasets from [here]()
 
 ##### Synthetic
 
-We use the "Home Interior" template, and use the "dogs asset pack", for generating
-different amounts of synthetic data while keeping the data distribution similar to
-the real data.
+We use the "Home Interior" template and the "dog assets" to generate different amounts of synthetic data while keeping the data distribution similar to the real data.
 
 The no. of frames we experimented with are:
 
