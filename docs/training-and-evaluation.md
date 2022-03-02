@@ -136,3 +136,7 @@ For running the training please follow the instructions below:
 1. `cd` into the project directory i.e. `demos/dog_detection/`
 3. `python __main__.py train -c config/detectron_dog_detection.yaml --train-data=<train-data-path> --val-data=<val-data-path>data --checkpoint-dir=<output-dif>`
 4. For testing - `python  __main__.py evaluate -c config/detectron_dog_detection.yaml --test-data=<test-data-path> --checkpoint-file=<checkpoint-file>`
+
+---
+
+#### Proceed to [Results](results.md)
