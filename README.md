@@ -10,7 +10,7 @@ we will use synthetic data to train our model and real data from COCO and OIDSv6
 fine tune and test our model.
 
 We also show how we can upload our own custom assets, and change randomizer parameters
-to change the data as required. Unity Computer Vision Datasets(UCVD) is the cloud platform
+to change the data as required. Unity Computer Vision Datasets (UCVD) is the cloud platform
 used for generating large scale datasets.
 
 ---
@@ -19,14 +19,12 @@ We are currently building the product out and would love your feedback - [Survey
 
 ---
 
-### Setup Instructions
+### Instructions
 
-1. [Dataset Generation & Configuration](docs/dataset-generation-and-configuration.md)
-2. [Generate with UCVD](docs/ucvd.md)
-3. [Setup Environment](docs/setup-training-environment.md)
-4. [Training, Fine-tuning & Evaluation](docs/training-and-evaluation.md)
-5. [Results](docs/results.md)
-
+1. [Prerequisites](docs/prerequisites.md)
+2. [Create a synthetic dataset for dog detection with UCVD](docs/dataset-generation-and-configuration.md)
+3. [Training, Fine-tuning & Evaluation](docs/training-and-evaluation.md)
+4. [Results](docs/results.md)
 
 [//]: # (N.B. - We have used Detectron2 for this project, and to know more about it, please chckout - [Detectron2]&#40;https://github.com/facebookresearch/detectron2&#41;.)
 

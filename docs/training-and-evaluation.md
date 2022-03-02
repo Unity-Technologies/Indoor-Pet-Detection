@@ -121,8 +121,6 @@ python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data
 
 This will generate a checkpoint which is trained on synthetic & fine-tuned on the 1200 real world data.
 
-
-
 ##### Step 3: Evaluate on real data:
 
 We will be using detectron2 yaml configs for training our model. We will be using 2 methodologies -
@@ -141,3 +139,7 @@ For running the training please follow the instructions below:
 ##### Incompatible library version: \_imaging.cpython-39-darwin.so requires version 14.0.0 or later
 
 Try `conda install -c conda-forge dlib` to fix the issue [[Reference]](https://github.com/python-pillow/Pillow/issues/5257)
+
+---
+
+#### Proceed to [Results](results.md)
