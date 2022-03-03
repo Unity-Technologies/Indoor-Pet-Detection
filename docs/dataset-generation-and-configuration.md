@@ -34,7 +34,7 @@ These workflow steps describes the process of using the Home Interior template a
 
 > Note: Assets are 3D models of the objects of interest that you want rendered as part of the dataset. These would be the objects that your computer vision models would be trained to detect. At this time, UCVD only support FBX files with embedded textures and animations.
 
-> Note: The Home Interior template provides empty homes with furniture, but there are no people or pets in it, so we need to add pets into the selected environment. In this example, we are going to only place dogs into the houses. If you need to place your own pets, such as cats or other small mammals, the UCVD accepts custom FBX assets and you could upload them.
+> Note: The Home Interior template provides empty homes with furniture, but there are no people or pets in it, so we need to add pets into the selected environment. In this example, we are going to only place dogs into the houses. If you need to place your own pets, such as cats or other small mammals, the UCVD accepts custom FBX assets and you could upload them. To create your own assets, please follow [this instruction](create-ucvd-assets.md).
 
 1. In the webpage as shown below, type `unity_dog` in the search bar to filter assets by their names.
 
@@ -71,6 +71,8 @@ These workflow steps describes the process of using the Home Interior template a
 	![](images/default-labels.png)
 
 1. In the webpage as the following image, choose **BoundingBox2DLabeler**, mark the checkbox of the **dog** label, and click the **Apply** button. You will see the **dog** label moved to the right column.
+
+	> Note: You can create custom labels for your own assets. Please follow [this instruction](create-ucvd-assets.md) to create your own labels.
 
 	![](images/add-dog-label-1.png)
 

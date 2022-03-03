@@ -19,7 +19,7 @@ We are currently building the product out and would love your feedback - [Survey
 
 ---
 
-### Instructions
+### Tutorials
 
 1. [Prerequisites](docs/prerequisites.md)
 2. [Create a synthetic dataset for dog detection with UCVD](docs/dataset-generation-and-configuration.md)
@@ -30,5 +30,7 @@ We are currently building the product out and would love your feedback - [Survey
 
 ### Learning More About Unity Synthetic Data
 
-1. [Unity Computer Vision Datasets]()
-2. [Unity Perception](https://github.com/Unity-Technologies/com.unity.perception)
+1. [Unity Computer Vision Datasets](https://unity.com/products/computer-vision)
+2. [Overview on how UCVD works](docs/how-ucvd-works.md)
+3. [Unity Perception](https://github.com/Unity-Technologies/com.unity.perception)
+4. [Create your own assets on UCVD](docs/create-ucvd-assets.md)
