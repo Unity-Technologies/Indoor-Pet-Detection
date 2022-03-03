@@ -4,21 +4,17 @@ num_classes: 1
 task: dog_detection
 train:
   dataset:
-    name: Datamaker_indoor_dog
-    data_split: dev # synth, dev, train, val
+    name: indoor_pet_detection
     synth: True
-    location: gs://doc-detection/dataset/synth/dogs_5000.zip #synthetic/aad646cc-343e-4e66-b907-4e443f94dbd8.zip  #
   transfer_learning:
     enabled: True
     checkpoint: COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
 
 test:
   dataset:
-    name: Real_images
-    data_split: val
+    name: real_images
     synth: False
-  checkpoint: output/model_final.pth  # COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml # Evaluation checkpoint
-  results: gs://doc-detection/results
+  checkpoint: <folder-name>/model_final.pth
 
 model:
   workers: 1

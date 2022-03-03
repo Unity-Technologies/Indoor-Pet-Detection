@@ -1,23 +1,25 @@
 ### Training & Evaluation
 
-Detectron2 is used as the framework for training & evaluation and the Faster RCNN network. We will be using
-yaml configs for these operations. There are a few samples in the `config/` folder.
+Detectron2 is used as the framework for training & evaluation and the Faster RCNN network. We will be using YAML configs for these operations. There are a few samples in the `config/` folder.
 
+We will be using detectron2 YAML configs for training our model. We will be using 2 methodologies -
+
+* Initializing from Imagenet-R-50.pkl checkpoint.
+* Not starting from a checkpoint.
 
 #### Training steps
 
 ##### Step 0: Initialization
 
-Please follow the [environment setup](setup-training-environment.md#directory-structure) and make sure
-the datasets are in the expected folders.
-
-When using synthetic data we use transfer learning and initialize the network with [Imagenet-R-50.pkl](https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl) weights. We also try without using transfer learning for this step, by turning `config.train.transfer_learning.enabled` to `False`.
+Please follow the [**Prerequisites**](prerequisites.md#setup-training-environment) to set up the Python environment and datasets for the model training. Make sure the datasets are in the expected folders.
 
 ##### Step 1: Pre-training with synthetic data:
 
-Based on the amount of synthetic data used we will setup the no. of iterations in the config.
+When using synthetic data we use transfer learning and initialize the network with [Imagenet-R-50.pkl](https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl) weights. We also try without using transfer learning for this step, by turning `config.train.transfer_learning.enabled` to `False`.
 
-For e.g.
+Based on the amount of synthetic data used we will set up the no. of iterations in the config.
+
+For example,
 
 ```
 size of dataset: 10k
@@ -27,9 +29,19 @@ total iterations: 170000
 no. of epochs: 272
 ```
 
-So for this example we will update `config/detectron_dog_detection.yml` with the following:
+So for this example, we will update the `train` and `model` configurations in the `config/detectron_dog_detection.yml` with the following:
 
 ```
+train:
+  dataset:
+    name: indoor_pet_detection
+    synth: True
+  transfer_learning:
+    enabled: False
+    checkpoint: COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
+
+...
+
 model:
   workers: 1
   gpu: 0
@@ -52,27 +64,28 @@ To start training:
 
 - `cd` into the project.
 - Run -
+
 ```shell
-python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data/synth/train-10k --val-data=data/real/val2017 --checkpoint-dir=ckpt
+python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data/synth/train-10k --val-data=data/real/val2017
 ```
 
-This will start the training. The `config/detectron_dog_detection.yaml` is configured to run on CPU. If you want to run on GPUs, please use `config/detectron_dog_detection_gpu.yaml` and update the `model.gpus` to the number of GPUs available. Currently it's configured to 8, which is what we used for running our experiments.
+This will start the training. The `config/detectron_dog_detection.yaml` is configured to run on CPU. If you want to run on GPUs, please use `config/detectron_dog_detection_gpu.yaml` and update the `train` and `model` configurations as above. The `model.gpus` should be updated to the number of GPUs available on your platform. Currently it's configured to 8, which is what we used for running our experiments.
 
-After the training is complete it will write the models into a folder with a timestamp. That
+After the training is complete it will write the models into the `output/` folder with a timestamp. That
 will be printed in the log.
 
 Use Tensorboard to view the training progress
 
-1. Open terminal and run `tensorboard --logdir=output --port=8008`
+1. Open terminal and run `tensorboard --logdir=output`
 
-2. In your favorite browser, start Tensorboard `http://localhost:8008/`
+2. In your favorite browser, start Tensorboard `http://localhost:6006/`
 
 ##### Step 2: Fine tune with real data:
 
 For fine-tuning with the 1200 real images, which is expected at `data/real/train2017/annotations/coco.json`.
 This would provide all metadata required to refer to the 1200 real images which will be used to finetune.
 
-Here's a [link]() to download it. Before we start the fine-tuning training, please update the config block
+Here's a [link](https://github.com/Unity-Technologies/Indoor-Pet-Detection/releases/download/v0.1.1/real_datasets.zip) to download it. Before we start the fine-tuning training, please update the config block
 as follows:
 
 ```
@@ -91,7 +104,9 @@ train:
     synth: False
   transfer_learning:
     enabled: True
-    checkpoint: <folder-name>
+    checkpoint: <folder-name>/model_final.pth
+
+...
 
 model:
   workers: 1
@@ -99,14 +114,14 @@ model:
   IMS_PER_BATCH: 16 <-- (batch size)
   base_lr: 0.00025
   MAX_ITER: 27000 <-- (iterations)
-  resume: True
+  resume: False    <-- (don't resume iterations)
   REFERENCE_WORLD_SIZE: 1
   FREEZE_AT: 0
   BATCH_SIZE_PER_IMAGE: 128
   NUM_CLASSES: 1
   CHECKPOINT_PERIOD: 10000
-  STEPS: (21000, 25000)
-  EVAL_PERIOD: 1000
+  STEPS: (21000, 25000) <-- (steps)
+  EVAL_PERIOD: 1000 <-- (evaluation period)
   TTA_ENABLED: False
   config_yaml: faster_rcnn_R_50_FPN_3x.yaml
 ```
@@ -116,23 +131,30 @@ model:
 And restart the training with:
 
 ```shell
-python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data --val-data=data --checkpoint-dir=output/<timestamp>/model_<iteration>.pth)
+python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data/real/train2017 --val-data=data/real/val2017
 ```
 
-This will generate a checkpoint which is trained on synthetic & fine-tuned on the 1200 real world data.
+This will generate a checkpoint into the `output/` folder with a timestamp, which is trained on synthetic & fine-tuned on the 1200 real world data.
 
 ##### Step 3: Evaluate on real data:
 
-We will be using detectron2 yaml configs for training our model. We will be using 2 methodologies -
+Update the config test block as the following, and replace the `<timestamp>` to your output folder from Step 2.
 
-* Initializing from Imagenet-R-50.pkl checkpoint.
-* Not starting from a checkpoint.
+```
+test:
+  dataset:
+    name: real_images
+    synth: False
+  checkpoint: <folder-name>/model_final.pth
+```
 
-For running the training please follow the instructions below:
+`<folder-name>` refers to the output folder name from Step 2.
 
-1. `cd` into the project directory i.e. `demos/dog_detection/`
-3. `python __main__.py train -c config/detectron_dog_detection.yaml --train-data=<train-data-path> --val-data=<val-data-path>data --checkpoint-dir=<output-dif>`
-4. For testing - `python  __main__.py evaluate -c config/detectron_dog_detection.yaml --test-data=<test-data-path> --checkpoint-file=<checkpoint-file>`
+Use the following command line to trigger the evaluation.
+
+```shell
+python -m src.run evaluate -c config/detectron_dog_detection.yaml --test-data=data/real/test2017
+```
 
 #### Trouble Shooting
 

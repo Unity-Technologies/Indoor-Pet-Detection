@@ -61,12 +61,12 @@ This step is to set up the Python environment and datasets for the model trainin
 
 #### Installation
 
-* conda (Please follow [Link](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) for installing conda)
+* conda (Please follow this [Link](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) for installing conda)
 * cuda drivers (If GPU available)
 
 #### Setup Conda
 
-1. `conda create --file environment.yml -n unity-cv-dog-detection python=3.8`
+1. `conda env create --file environment.yml -n unity-cv-dog-detection python=3.8`
 2. `conda activate unity-cv-dog-detection`
 3. `conda env update -n unity-cv-dog-detection --file environment.yml`
 
@@ -93,7 +93,7 @@ This resulted in a total of 1538 images, and we split it -
 
 TODO: Update links to datasets (@souranil)
 
-Download the datasets from [here]()
+Download the datasets from [here](https://github.com/Unity-Technologies/Indoor-Pet-Detection/releases/download/v0.1.1/real_datasets.zip)
 
 
 ##### Synthetic
