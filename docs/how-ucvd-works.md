@@ -14,7 +14,7 @@ Read [this tutorial](https://github.com/Unity-Technologies/com.unity.perception/
 
 ### Template
 
-The UCVD **template** is a Unity project pre-built to help bootstrap your generation work. It contains two components for the synthetic data generation: the environment and randomizers. The **environment** is the 3D models in the background of generated images, like home interior or retail shelves, where the assets and objects are placed.
+The UCVD **template** is a Unity project pre-built to help bootstrap your generation work. It contains two components for synthetic data generation: the environment and randomizers. The **environment** is the 3D models in the background of generated images, like home interior or retail shelves, where the assets and objects are placed.
 
 The **randomizer** is a set of rules that defines the placement of assets in the environment and varies the parameters of the scene in each frame, such as the color of lighting and scales of objects. The randomizers are configurable. You can customize the range of parameters in the configuration and the parameters will be randomized with the given distribution in each image. Read [this document](https://github.com/Unity-Technologies/com.unity.perception/blob/main/com.unity.perception/Documentation~/Randomization/Index.md#randomizers) for more information about the randomizers.
 
