@@ -90,10 +90,7 @@ This resulted in a total of 1538 images, and we split it -
 | validation  | 138                  |
 | test        | 200                  |
 
-
-TODO: Update links to datasets (@souranil)
-
-Download the datasets from [here]()
+Download the datasets from [here](https://github.com/Unity-Technologies/Indoor-Pet-Detection/releases/download/v0.1.1/real-datasets.zip)
 
 
 ##### Synthetic
