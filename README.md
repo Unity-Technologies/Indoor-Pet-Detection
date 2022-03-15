@@ -13,12 +13,6 @@ We also show how we can upload our own custom assets, and change randomizer para
 to change the data as required. Unity Computer Vision Datasets (UCVD) is the cloud platform
 used for generating large scale datasets.
 
----
-
-We are currently building the product out and would love your feedback - [Survey](Link).
-
----
-
 ### Instructions
 
 1. [Prerequisites](docs/prerequisites.md)
