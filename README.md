@@ -24,5 +24,7 @@ used for generating large scale datasets.
 
 ### Learning More About Unity Synthetic Data
 
-1. [Unity Computer Vision Datasets]()
-2. [Unity Perception](https://github.com/Unity-Technologies/com.unity.perception)
+1. [Unity Computer Vision Datasets](https://unity.com/products/computer-vision)
+2. [Overview on how UCVD works](docs/how-ucvd-works.md)
+3. [Unity Perception](https://github.com/Unity-Technologies/com.unity.perception)
+4. [Create your own assets on UCVD](docs/create-ucvd-assets.md)
