@@ -118,15 +118,19 @@ project
 │   └───synth
 │   │     └───train-10k
 │   │         └───annotations
-│   │         │      coco_object_detection_annotations.json <-- (synthetic train)
+│   │         │      coco.json <-- (synthetic train)
 │   │         └───images
 │   └───real
+│         └───test2017
+│         │   └───annotations
+│         |   │     coco.json
+│         |   └───images
 │         └───train2017
-│         │   └───annotation
+│         |   └───annotations
 │         |   │     coco.json
 │         |   └───images
 │         └───val2017
-│             └───annotation
+│             └───annotations
 │             │     coco.json
 │             └───images
 ```
