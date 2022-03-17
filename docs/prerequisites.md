@@ -11,7 +11,7 @@
 
 ### Setup Unity Account
 
-Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity Service Project associated with a Unity Serivce Account. You can skip this step if you have already had a Unity Service Project.
+Unity Computer Vision Datasets (UCVD) service provides data generation at scale on Cloud. To use UCVD, you are asked to have a Unity Service Project associated with a Unity Service Account. You can skip this step if you have already had a Unity Service Project.
 
 #### Create a Unity Account
 
