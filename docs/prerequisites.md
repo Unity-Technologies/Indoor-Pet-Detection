@@ -82,18 +82,18 @@ We used real data for fine-tuning & testing the final models for performance.
 [COCO](https://cocodataset.org/#home) and [OIDSv6](https://storage.googleapis.com/openimages/web/index.html) was
 filtered with classes including `dog` and indoor artifacts like `microwave`, `couch` etc.
 
-This resulted in a total of 1538 images, and we split it -
+This resulted in a total of 1337 images, and we split it -
 
 | Task        | No. of images (real) |
 |-------------|----------------------|
 | fine-tuning | 1200                 |
-| validation  | 138                  |
-| test        | 200                  |
+| validation  | 137                  |
 
+Download the datasets using the following command line
 
-TODO: Update links to datasets (@souranil)
-
-Download the datasets from [here](https://github.com/Unity-Technologies/Indoor-Pet-Detection/releases/download/v0.1.1/real_datasets.zip)
+```
+./dataset.sh init
+```
 
 
 ##### Synthetic
@@ -121,15 +121,11 @@ project
 │   │         │      coco.json <-- (synthetic train)
 │   │         └───images
 │   └───real
-│         └───test2017
-│         │   └───annotations
-│         |   │     coco.json
-│         |   └───images
-│         └───train2017
+│         └───train
 │         |   └───annotations
 │         |   │     coco.json
 │         |   └───images
-│         └───val2017
+│         └───val
 │             └───annotations
 │             │     coco.json
 │             └───images

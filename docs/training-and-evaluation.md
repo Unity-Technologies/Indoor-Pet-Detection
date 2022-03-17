@@ -66,7 +66,7 @@ To start training:
 - Run -
 
 ```shell
-python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data/synth/train-10k --val-data=data/real/val2017
+python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data/synth/train-10k --val-data=data/real/val
 ```
 
 This will start the training. The `config/detectron_dog_detection.yaml` is configured to run on CPU. If you want to run on GPUs, please use `config/detectron_dog_detection_gpu.yaml` and update the `train` and `model` configurations as above. The `model.gpus` should be updated to the number of GPUs available on your platform. Currently it's configured to 8, which is what we used for running our experiments.
@@ -131,7 +131,7 @@ model:
 And restart the training with:
 
 ```shell
-python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data/real/train2017 --val-data=data/real/val2017
+python -m src.run train -c config/detectron_dog_detection.yaml --train-data=data/real/train --val-data=data/real/val
 ```
 
 This will generate a checkpoint into the `output/` folder with a timestamp, which is trained on synthetic & fine-tuned on the 1200 real world data.
@@ -153,7 +153,7 @@ test:
 Use the following command line to trigger the evaluation.
 
 ```shell
-python -m src.run evaluate -c config/detectron_dog_detection.yaml --test-data=data/real/test2017
+python -m src.run evaluate -c config/detectron_dog_detection.yaml --test-data=data/real/val
 ```
 
 #### Trouble Shooting

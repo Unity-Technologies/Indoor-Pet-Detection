@@ -174,6 +174,10 @@ dataset
 	 		...
 ```
 
+1. Move the extracted dataset to the `data/synth` folder and rename it to `train-10k`
+
+	> You can use `./dataset.sh validate` to validate the structure of your `data/` folder
+
 ---
 
 ### Proceed to [Training and Evaluation](training-and-evaluation.md)

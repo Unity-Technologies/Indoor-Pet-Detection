@@ -2,6 +2,7 @@ name: unity-cv-dog-detection
 channels:
   - defaults
   - pytorch
+  - conda-forge
 dependencies:
   - pip==21.2.4
   - python=3.8
@@ -10,6 +11,8 @@ dependencies:
   - protobuf>3.14
   - pytest
   - pytest-cov
+  - gsutil
+  - unzip
   - pip:
     - git+https://github.com/facebookresearch/detectron2.git
     - yacs~=0.1

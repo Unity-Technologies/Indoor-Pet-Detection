@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 help()
 {
 	echo "Usage: $0 [init|validate]"
@@ -12,12 +14,11 @@ help()
 BASE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 CMD=$1
 
-DATA_DIRS=(
-	"$BASE_DIR/data/synth/train-10k"
-	"$BASE_DIR/data/real/test2017"
-	"$BASE_DIR/data/real/train2017"
-	"$BASE_DIR/data/real/val2017"
-	)
+SYNTH_DIR="$BASE_DIR/data/synth"
+SYNTH_TRAIN_DIR="$SYNTH_DIR/train-10k"
+REAL_DIR="$BASE_DIR/data/real"
+REAL_TRAIN_DIR="$REAL_DIR/train"
+REAL_VAL_DIR="$REAL_DIR/val"
 
 ANNOTATIONS_DIR="annotations"
 IMAGES_DIR="images"
@@ -40,17 +41,38 @@ validate_dir()
 
 
 if [[ $CMD == "init" ]]; then
-	echo "Initializing data directories..."
-	for dir in ${DATA_DIRS[@]}; do
-		mkdir -p $dir
-	done
+	if [ -d "$BASE_DIR/data" ]; then
+		echo "WARNING: The 'data/' directory has already exist. Please remove it before initialization"
+		exit 0
+	fi
+
+	echo "Initializing real datasets directories..."
+	mkdir -p $SYNTH_DIR
+	mkdir -p $REAL_DIR
+
+	echo "Downloading real datasets"
+	TMP_DIR="$BASE_DIR/tmp_datasets"
+	if [ ! -d $TMP_DIR ]; then
+		mkdir $TMP_DIR
+		gsutil cp -r gs://indoor-pet-detection/data/real $TMP_DIR
+	fi
+	unzip -o -q "$TMP_DIR/real/train.zip" -d $REAL_DIR \
+		&& mv "$REAL_DIR/train2017" $REAL_TRAIN_DIR \
+		&& mv "$REAL_TRAIN_DIR/annotations_coco" "$REAL_TRAIN_DIR/$ANNOTATIONS_DIR" \
+		&& mv "$REAL_TRAIN_DIR/$ANNOTATIONS_DIR/train_dog_coco.json" "$REAL_TRAIN_DIR/$ANNOTATIONS_DIR/$ANNOTATIONS_FILE"
+	unzip -o -q "$TMP_DIR/real/val.zip" -d $REAL_DIR \
+		&& mv "$REAL_DIR/val2017" $REAL_VAL_DIR \
+		&& mv "$REAL_VAL_DIR/annotations_coco" "$REAL_VAL_DIR/$ANNOTATIONS_DIR" \
+		&& mv "$REAL_VAL_DIR/$ANNOTATIONS_DIR/val_dog_coco.json" "$REAL_VAL_DIR/$ANNOTATIONS_DIR/$ANNOTATIONS_FILE"
+	rm -rf $TMP_DIR
+
 	echo "Done"
 
 elif [[ $CMD == "validate" ]]; then
 	echo "Validating data directories..."
-	for dir in ${DATA_DIRS[@]}; do
-		validate_dir $dir
-	done
+	validate_dir $SYNTH_TRAIN_DIR
+	validate_dir $REAL_TRAIN_DIR
+	validate_dir $REAL_VAL_DIR
 	echo "Done"
 
 else
