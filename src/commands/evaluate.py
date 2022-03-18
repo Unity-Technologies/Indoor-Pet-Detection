@@ -25,7 +25,6 @@ logger = logging.getLogger(__name__)
     "-p",
     "--checkpoint-file",
     type=click.STRING,
-    required=True,
     help="URI to a checkpoint file.",
 )
 @click.option(

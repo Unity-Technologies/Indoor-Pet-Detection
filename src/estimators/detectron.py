@@ -98,7 +98,7 @@ class DetectronEstimator:
         args.config_file = "config/detectron/" + self.config.model.config_yaml
         args.eval_only = eval_only
         args.resume = self.config.model.resume
-        arguments = args_fine_tune(self.config)
+        arguments = args_fine_tune(self.config, eval_only)
         logger.info(f"args_transfer_learning prepared: {arguments}")
         args.opts = arguments
         logger.info(f"\n\n[*] Training Args: {args}\n\n")
@@ -257,10 +257,7 @@ def get_dataset_metadata(data_path, is_synth=False):
         raise Exception(f"Valid annotation not found at {data_path}")
     annotation_path = annotation_match[0]
 
-    if is_synth:
-        images_path = data_path
-    else:
-        images_path = f"{data_path}/images"
+    images_path = f"{data_path}/images"
 
     return (
         annotation_path,
@@ -268,7 +265,7 @@ def get_dataset_metadata(data_path, is_synth=False):
     )
 
 
-def args_fine_tune(config):
+def args_fine_tune(config, eval_only):
     return [
         "DATALOADER.NUM_WORKERS",
         config.model.workers,
@@ -295,7 +292,7 @@ def args_fine_tune(config):
         "MODEL.ROI_HEADS.NUM_CLASSES",
         config.model.NUM_CLASSES,
         "OUTPUT_DIR",
-        f"output/{TIMESTAMP_SUFFIX}"
+        f"results/{TIMESTAMP_SUFFIX}" if eval_only else f"output/{TIMESTAMP_SUFFIX}"
     ]
 
 

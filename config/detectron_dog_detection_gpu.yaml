@@ -4,7 +4,7 @@ num_classes: 1
 task: dog_detection
 train:
   dataset:
-    name: synth_0_1
+    name: indoor_pet_detection
     synth: True
   transfer_learning:
     enabled: True
@@ -14,8 +14,7 @@ test:
   dataset:
     name: real_images
     synth: False
-  checkpoint: ckpt/20220126-121925/model_final.pth  # COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml # Evaluation checkpoint
-  results: gs://doc-detection/results
+  checkpoint: <folder-name>/model_final.pth
 
 model:
   workers: 4
@@ -23,7 +22,7 @@ model:
   IMS_PER_BATCH: 16
   base_lr: 0.0025
   MAX_ITER: 270000
-  resume: False
+  resume: True
   REFERENCE_WORLD_SIZE: 8
   FREEZE_AT: 0
   BATCH_SIZE_PER_IMAGE: 128

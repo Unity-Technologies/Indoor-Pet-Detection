@@ -61,12 +61,12 @@ This step is to set up the Python environment and datasets for the model trainin
 
 #### Installation
 
-* conda (Please follow [Link](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) for installing conda)
+* conda (Please follow this [Link](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) for installing conda)
 * cuda drivers (If GPU available)
 
 #### Setup Conda
 
-1. `conda create --file environment.yml -n unity-cv-dog-detection python=3.8`
+1. `conda env create --file environment.yml -n unity-cv-dog-detection python=3.8`
 2. `conda activate unity-cv-dog-detection`
 3. `conda env update -n unity-cv-dog-detection --file environment.yml`
 
@@ -90,10 +90,11 @@ This resulted in a total of 1538 images, and we split it -
 | validation  | 138                  |
 | test        | 200                  |
 
+Download the datasets using the following command line
 
-TODO: Update links to datasets (@souranil)
-
-Download the datasets from [here]()
+```
+./dataset.sh init
+```
 
 
 ##### Synthetic
@@ -118,15 +119,19 @@ project
 │   └───synth
 │   │     └───train-10k
 │   │         └───annotations
-│   │         │      coco_object_detection_annotations.json <-- (synthetic train)
+│   │         │      coco.json <-- (synthetic train)
 │   │         └───images
 │   └───real
-│         └───train2017
-│         │   └───annotation
+│         └───train
+│         |   └───annotations
 │         |   │     coco.json
 │         |   └───images
-│         └───val2017
-│             └───annotation
+│         └───val
+│         |   └───annotations
+│         |   │     coco.json
+│         |   └───images
+│         └───test
+│             └───annotations
 │             │     coco.json
 │             └───images
 ```
