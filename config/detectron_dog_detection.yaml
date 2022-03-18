@@ -15,6 +15,7 @@ test:
   dataset:
     name: real_images
     synth: False
+  results: results
   checkpoint: <folder-name>/model_final.pth
 
 model:
