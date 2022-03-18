@@ -6,6 +6,7 @@ train:
   dataset:
     name: indoor_pet_detection
     synth: True
+    location: data/synth/train-10k
   transfer_learning:
     enabled: True
     checkpoint: COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml

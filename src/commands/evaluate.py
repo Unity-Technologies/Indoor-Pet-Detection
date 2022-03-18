@@ -22,6 +22,12 @@ logger = logging.getLogger(__name__)
     help="Path to the config estimator yaml file.",
 )
 @click.option(
+    "-p",
+    "--checkpoint-file",
+    type=click.STRING,
+    help="URI to a checkpoint file.",
+)
+@click.option(
     "-t",
     "--test-data",
     type=click.Path(exists=True, file_okay=False),
@@ -61,7 +67,7 @@ logger = logging.getLogger(__name__)
     ),
 )
 def cli(
-    config, test_data, tb_log_dir, workers, override,
+    config, checkpoint_file, test_data, tb_log_dir, workers, override,
 ):
     ctx = click.get_current_context()
     logger.debug(f"Called evaluate command with parameters: {ctx.params}")
@@ -72,6 +78,7 @@ def cli(
     estimator = DetectronEstimator(
         config=config,
         name=config.estimator,
+        checkpoint_file=checkpoint_file,
         tb_log_dir=tb_log_dir,
         workers=workers,
         test_data=test_data,
