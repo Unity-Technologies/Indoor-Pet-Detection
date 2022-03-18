@@ -82,7 +82,7 @@ We used real data for fine-tuning & testing the final models for performance.
 [COCO](https://cocodataset.org/#home) and [OIDSv6](https://storage.googleapis.com/openimages/web/index.html) was
 filtered with classes including `dog` and indoor artifacts like `microwave`, `couch` etc.
 
-This resulted in a total of 1337 images, and we split it -
+This resulted in a total of 1538 images, and we split it -
 
 | Task        | No. of images (real) |
 |-------------|----------------------|

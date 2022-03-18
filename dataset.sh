@@ -19,6 +19,7 @@ SYNTH_TRAIN_DIR="$SYNTH_DIR/train-10k"
 REAL_DIR="$BASE_DIR/data/real"
 REAL_TRAIN_DIR="$REAL_DIR/train"
 REAL_VAL_DIR="$REAL_DIR/val"
+REAL_TEST_DIR="$REAL_DIR/test"
 
 ANNOTATIONS_DIR="annotations"
 IMAGES_DIR="images"
@@ -64,6 +65,10 @@ if [[ $CMD == "init" ]]; then
 		&& mv "$REAL_DIR/val2017" $REAL_VAL_DIR \
 		&& mv "$REAL_VAL_DIR/annotations_coco" "$REAL_VAL_DIR/$ANNOTATIONS_DIR" \
 		&& mv "$REAL_VAL_DIR/$ANNOTATIONS_DIR/val_dog_coco.json" "$REAL_VAL_DIR/$ANNOTATIONS_DIR/$ANNOTATIONS_FILE"
+	unzip -o -q "$TMP_DIR/real/test.zip" -d $REAL_DIR \
+		&& mv "$REAL_TEST_DIR/annotations_coco" "$REAL_TEST_DIR/$ANNOTATIONS_DIR" \
+		&& mv "$REAL_TEST_DIR/$ANNOTATIONS_DIR/test_dog_coco.json" "$REAL_TEST_DIR/$ANNOTATIONS_DIR/$ANNOTATIONS_FILE"
+
 	rm -rf $TMP_DIR
 
 	echo "Done"
@@ -73,6 +78,7 @@ elif [[ $CMD == "validate" ]]; then
 	validate_dir $SYNTH_TRAIN_DIR
 	validate_dir $REAL_TRAIN_DIR
 	validate_dir $REAL_VAL_DIR
+	validate_dir $REAL_TEST_DIR
 	echo "Done"
 
 else
