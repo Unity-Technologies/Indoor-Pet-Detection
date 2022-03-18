@@ -153,7 +153,7 @@ test:
 Use the following command line to trigger the evaluation.
 
 ```shell
-python -m src.run evaluate -c config/detectron_dog_detection.yaml --test-data=data/real/val
+python -m src.run evaluate -c config/detectron_dog_detection.yaml --test-data=data/real/test
 ```
 
 #### Trouble Shooting

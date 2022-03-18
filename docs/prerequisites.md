@@ -87,7 +87,8 @@ This resulted in a total of 1337 images, and we split it -
 | Task        | No. of images (real) |
 |-------------|----------------------|
 | fine-tuning | 1200                 |
-| validation  | 137                  |
+| validation  | 138                  |
+| test        | 200                  |
 
 Download the datasets using the following command line
 
@@ -126,6 +127,10 @@ project
 │         |   │     coco.json
 │         |   └───images
 │         └───val
+│         |   └───annotations
+│         |   │     coco.json
+│         |   └───images
+│         └───test
 │             └───annotations
 │             │     coco.json
 │             └───images
