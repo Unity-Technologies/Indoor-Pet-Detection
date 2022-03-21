@@ -41,7 +41,6 @@ logger = logging.getLogger(__name__)
     default=const.DEFAULT_TENSORBOARD_LOG_DIR,
     help=(
         "Path to the directory where tensorboard events should be stored. "
-        "This Path can be GCS URI (e.g. gs://<bucket>/runs) or full path "
         "to a local directory."
     ),
 )

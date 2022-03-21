@@ -82,7 +82,6 @@ class OverrideKey(click.ParamType):
     default=const.DEFAULT_TENSORBOARD_LOG_DIR,
     help=(
         "Path to the directory where tensorboard events should be stored. "
-        "This Path can be GCS URI (e.g. gs://<bucket>/runs) or full path "
         "to a local directory."
     ),
 )
@@ -93,7 +92,6 @@ class OverrideKey(click.ParamType):
     default=const.DEFAULT_CHECKPOINT_DIR,
     help=(
         "Path to the directory where model checkpoint files should be stored. "
-        "This Path can be GCS URI (e.g. gs://<bucket>/checkpoints) or "
         "full path to a local directory."
     ),
 )
