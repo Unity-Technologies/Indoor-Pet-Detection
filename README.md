@@ -69,4 +69,3 @@ used for generating large scale datasets.
   <a href="https://github.com/Unity-Technologies/Indoor-Pet-Detection/releases/download/v0.1.1-ckpt/checkpoints_model_final_scratch_100k.pth">Scratch + 100k synthetic </a>
   </td><td>1200</td><td>53.78</td><td>84</td></tr>
 </table>
-
