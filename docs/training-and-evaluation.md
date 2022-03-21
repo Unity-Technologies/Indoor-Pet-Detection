@@ -37,7 +37,7 @@ train:
     name: indoor_pet_detection
     synth: True
   transfer_learning:
-    enabled: False
+    enabled: True
     checkpoint: COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
 
 ...
