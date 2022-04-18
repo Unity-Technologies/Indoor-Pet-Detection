@@ -34,8 +34,8 @@ Checkout our example at - [Demo](https://huggingface.co/spaces/unity3d/Indoor-Pe
 
 ### Sample Datasets
 
-[5000 Synthetic (Train)](https://storage.cloud.google.com/dog_detection_data/formatted-datasets/coco-synth-indoor-dog/train-5k/train2017.zip)
-[1200 Real (Fine-tune)](https://storage.cloud.google.com/dog_detection_data/formatted-datasets/coco-real-indoor-dog/train/train2017.zip)
+* [5000 Synthetic (Train)](https://storage.cloud.google.com/dog_detection_data/formatted-datasets/coco-synth-indoor-dog/train-5k/train2017.zip)
+* [1200 Real (Fine-tune)](https://storage.cloud.google.com/dog_detection_data/formatted-datasets/coco-real-indoor-dog/train/train2017.zip)
 
 ### Results
 
